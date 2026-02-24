@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скоро что-то будет...</title>
+    <style>
+        /* Чёрный фон, минимализм */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .timer-container {
+            background: #111;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            border: 1px solid #333;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .timer-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .timer-block {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 120px;
+            border: 1px solid #333;
+        }
+
+        .timer-number {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .timer-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+        }
+
+        /* Анимация появления для сообщений */
+        .message {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 30px 0;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #444;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #loading, #expired {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container" id="container">
+        <h1 id="mainTitle">скоро что то будет...</h1>
+        <div class="timer-grid" id="timer">
+            <div class="timer-block">
+                <div class="timer-number" id="days">00</div>
+                <div class="timer-label">Дней</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-number" id="hours">00</div>
+                <div class="timer-label">Часов</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-number" id="minutes">00</div>
+                <div class="timer-label">Минут</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-number" id="seconds">00</div>
+                <div class="timer-label">Секунд</div>
+            </div>
+        </div>
+        <div id="loading" class="message">загрузка...</div>
+        <div id="expired" class="message">бот открыт, перезапусти приложение</div>
+    </div>
+
+    <script>
+        (function() {
+            // Целевая дата: 1 марта 2026, 14:00 MSK (UTC+3) = 11:00 UTC
+            const targetDate = Date.UTC(2026, 2, 1, 11, 0, 0); // месяц 2 = март
+
+            // Элементы
+            const title = document.getElementById('mainTitle');
+            const timerGrid = document.getElementById('timer');
+            const loadingDiv = document.getElementById('loading');
+            const expiredDiv = document.getElementById('expired');
+            const daysSpan = document.getElementById('days');
+            const hoursSpan = document.getElementById('hours');
+            const minutesSpan = document.getElementById('minutes');
+            const secondsSpan = document.getElementById('seconds');
+
+            // Состояния
+            let finished = false;
+            let timeoutId = null;
+            let intervalId = null;
+
+            function format(n) {
+                return n < 10 ? '0' + n : n;
+            }
+
+            function update() {
+                if (finished) return;
+
+                const now = Date.now();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    finished = true;
+
+                    // Удаляем заголовок и блок таймера
+                    if (title) title.remove();
+                    if (timerGrid) timerGrid.remove();
+
+                    // Показываем сообщение загрузки
+                    loadingDiv.style.display = 'block';
+
+                    // Останавливаем обновление времени
+                    clearInterval(intervalId);
+
+                    // Через 5 секунд показываем финальное сообщение
+                    timeoutId = setTimeout(() => {
+                        loadingDiv.style.display = 'none';
+                        expiredDiv.style.display = 'block';
+                    }, 5000);
+
+                    return;
+                }
+
+                // Обновляем цифры
+                const totalSec = Math.floor(diff / 1000);
+                const days = Math.floor(totalSec / (3600 * 24));
+                const hours = Math.floor((totalSec % (3600 * 24)) / 3600);
+                const minutes = Math.floor((totalSec % 3600) / 60);
+                const seconds = totalSec % 60;
+
+                daysSpan.textContent = format(days);
+                hoursSpan.textContent = format(hours);
+                minutesSpan.textContent = format(minutes);
+                secondsSpan.textContent = format(seconds);
+            }
+
+            intervalId = setInterval(update, 1000);
+            update();
+        })();
+    </script>
+</body>
+</html>
