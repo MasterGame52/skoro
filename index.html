@@ -5,89 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Скоро что-то будет...</title>
     <style>
-        /* Чёрный фон, минимализм */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-sizing: border-box;
+        }
+
+        body {
             min-height: 100vh;
-            text-align: center;
+            background: radial-gradient(circle at 30% 30%, #0b0b1f, #010101 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            color: #fff;
+            padding: 16px;
         }
 
         .timer-container {
-            background: #111;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-            border: 1px solid #333;
-            max-width: 800px;
-            width: 90%;
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(100, 150, 255, 0.25);
+            border-radius: 56px;
+            padding: 48px 40px;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(80, 160, 255, 0.2) inset, 0 0 30px rgba(70, 130, 255, 0.3);
+            max-width: 1000px;
+            width: 100%;
+            transition: box-shadow 0.3s;
+        }
+
+        .timer-container:hover {
+            box-shadow: 0 30px 60px -15px #1e3a8a, 0 0 0 2px rgba(100, 180, 255, 0.4) inset, 0 0 50px #3b82f6;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 4px;
+            font-size: 4rem;
+            font-weight: 500;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #fff, #aaccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px #3b82f6;
+            word-break: break-word;
         }
 
         .timer-grid {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 28px;
             flex-wrap: wrap;
+            margin: 30px 0 20px;
         }
 
         .timer-block {
-            background: #1a1a1a;
-            border-radius: 15px;
-            padding: 20px;
-            min-width: 120px;
-            border: 1px solid #333;
+            background: rgba(0, 5, 15, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(70, 140, 255, 0.5);
+            border-radius: 32px;
+            padding: 24px 16px;
+            min-width: 140px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(90, 170, 255, 0.3) inset, 0 0 20px #1e3a8a;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .timer-block:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px #0f172a, 0 0 0 2px #3b82f6 inset, 0 0 40px #2563eb;
         }
 
         .timer-number {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 5px;
-            color: #fff;
+            line-height: 1;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(180deg, #fff, #b0d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px #1e4b8a);
+            font-feature-settings: "tnum";
         }
 
         .timer-label {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #aaa;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #9ab9ff;
+            font-weight: 300;
         }
 
-        /* Анимация появления для сообщений */
+        /* Сообщения (загрузка и финал) */
         .message {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-            margin: 30px 0;
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #444;
-            animation: fadeIn 1s ease-in-out;
+            font-size: 2.5rem;
+            font-weight: 500;
+            text-align: center;
+            background: rgba(0, 20, 40, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #3b82f6;
+            border-radius: 60px;
+            padding: 30px 40px;
+            margin: 30px 0 10px;
+            box-shadow: 0 20px 40px #0a0a1a, 0 0 30px #1e4b8a;
+            animation: glowPulse 2s infinite alternate, fadeIn 0.8s ease-out;
+            color: #e0f0ff;
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 20px 40px #0a0a1a, 0 0 20px #2563eb; }
+            100% { box-shadow: 0 20px 50px #0f172a, 0 0 40px #3b82f6; }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         #loading, #expired {
             display: none;
+        }
+
+        /* для мобильных */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.4rem; letter-spacing: 3px; }
+            .timer-number { font-size: 3.5rem; }
+            .timer-block { min-width: 100px; padding: 16px 8px; }
+            .message { font-size: 1.8rem; padding: 20px; }
         }
     </style>
 </head>
@@ -118,10 +165,9 @@
 
     <script>
         (function() {
-            // Целевая дата: 1 марта 2026, 14:00 MSK (UTC+3) = 11:00 UTC
-            const targetDate = Date.UTC(2026, 2, 1, 11, 0, 0); // месяц 2 = март
+            // 1 марта 2026, 14:00 MSK = 11:00 UTC
+            const targetDate = Date.UTC(2026, 2, 1, 11, 0, 0);
 
-            // Элементы
             const title = document.getElementById('mainTitle');
             const timerGrid = document.getElementById('timer');
             const loadingDiv = document.getElementById('loading');
@@ -131,7 +177,6 @@
             const minutesSpan = document.getElementById('minutes');
             const secondsSpan = document.getElementById('seconds');
 
-            // Состояния
             let finished = false;
             let timeoutId = null;
             let intervalId = null;
@@ -149,17 +194,13 @@
                 if (diff <= 0) {
                     finished = true;
 
-                    // Удаляем заголовок и блок таймера
                     if (title) title.remove();
                     if (timerGrid) timerGrid.remove();
 
-                    // Показываем сообщение загрузки
                     loadingDiv.style.display = 'block';
 
-                    // Останавливаем обновление времени
                     clearInterval(intervalId);
 
-                    // Через 5 секунд показываем финальное сообщение
                     timeoutId = setTimeout(() => {
                         loadingDiv.style.display = 'none';
                         expiredDiv.style.display = 'block';
@@ -168,7 +209,6 @@
                     return;
                 }
 
-                // Обновляем цифры
                 const totalSec = Math.floor(diff / 1000);
                 const days = Math.floor(totalSec / (3600 * 24));
                 const hours = Math.floor((totalSec % (3600 * 24)) / 3600);
