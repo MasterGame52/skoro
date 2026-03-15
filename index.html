@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Скоро что-то будет...</title>
+    <title>Snowfune — Обновление</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,218 +15,404 @@
         }
 
         body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
             min-height: 100vh;
-            background: radial-gradient(circle at 30% 30%, #0b0b1f, #010101 80%);
+            overflow-x: hidden;
+            position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
-            color: #fff;
-            padding: 16px;
+            padding: 20px;
         }
 
-        .timer-container {
-            background: rgba(10, 10, 20, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(100, 150, 255, 0.25);
-            border-radius: 56px;
-            padding: 48px 40px;
-            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(80, 160, 255, 0.2) inset, 0 0 30px rgba(70, 130, 255, 0.3);
-            max-width: 1000px;
+        /* Снежинки */
+        .snowflakes-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            transition: box-shadow 0.3s;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .timer-container:hover {
-            box-shadow: 0 30px 60px -15px #1e3a8a, 0 0 0 2px rgba(100, 180, 255, 0.4) inset, 0 0 50px #3b82f6;
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            user-select: none;
+            font-size: 1.5rem;
+            animation: fall linear infinite;
+            opacity: 0;
+            text-shadow: 0 0 15px #7fc4ff, 0 0 30px #4fa0e0;
         }
 
-        h1 {
-            font-size: 4rem;
-            font-weight: 500;
-            letter-spacing: 6px;
-            text-transform: uppercase;
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(110vh) rotate(1080deg) scale(0.2);
+                opacity: 0.1;
+            }
+        }
+
+        /* Основной контейнер */
+        .container {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #fff, #aaccff);
+            max-width: 800px;
+            width: 100%;
+            animation: containerPop 1s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+        }
+
+        @keyframes containerPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Заголовок S/F */
+        .logo {
+            font-size: clamp(80px, 15vw, 150px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #c0ecff, #ffffff);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px #3b82f6;
-            word-break: break-word;
+            background-clip: text;
+            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+            animation: floatTitle 5s ease-in-out infinite, gradientShift 8s linear infinite;
+            text-shadow: 0 0 40px rgba(127, 196, 255, 0.5);
+            filter: drop-shadow(0 0 60px rgba(127, 196, 255, 0.8));
         }
 
-        .timer-grid {
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Карточка с таймером */
+        .timer-card {
+            background: rgba(15, 40, 55, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            padding: 40px 30px;
+            border: 2px solid rgba(120, 200, 255, 0.6);
+            box-shadow: 0 30px 50px -20px #000, 
+                        0 0 0 1px rgba(100, 200, 255, 0.2), 
+                        inset 0 1px 2px rgba(255,255,255,0.1),
+                        0 0 60px rgba(127, 196, 255, 0.4);
+            animation: cardAppear 0.8s ease-out forwards;
+            margin-bottom: 30px;
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .timer-label {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #e0f4ff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        /* Таймер */
+        .timer {
             display: flex;
             justify-content: center;
-            gap: 28px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin: 30px 0 20px;
         }
 
         .timer-block {
-            background: rgba(0, 5, 15, 0.7);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(70, 140, 255, 0.5);
-            border-radius: 32px;
-            padding: 24px 16px;
-            min-width: 140px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(90, 170, 255, 0.3) inset, 0 0 20px #1e3a8a;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: rgba(10, 35, 50, 0.85);
+            border-radius: 24px;
+            padding: 25px 20px;
+            min-width: 100px;
+            border: 2px solid #3fa0e0;
+            box-shadow: 0 10px 0 #0f3448, 
+                        0 0 40px rgba(63, 160, 224, 0.6),
+                        inset 0 2px 8px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .timer-block:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px #0f172a, 0 0 0 2px #3b82f6 inset, 0 0 40px #2563eb;
+            box-shadow: 0 18px 0 #0f3448, 
+                        0 0 60px rgba(63, 160, 224, 0.9);
         }
 
-        .timer-number {
-            font-size: 5rem;
-            font-weight: 700;
+        .timer-value {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: #ffd966;
+            display: block;
             line-height: 1;
-            text-align: center;
-            margin-bottom: 8px;
-            background: linear-gradient(180deg, #fff, #b0d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px #1e4b8a);
-            font-feature-settings: "tnum";
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 217, 102, 0.6);
+            animation: countdownPulse 1s infinite;
         }
 
-        .timer-label {
-            font-size: 1.3rem;
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .timer-unit {
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            color: #b0e0ff;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-align: center;
-            color: #9ab9ff;
-            font-weight: 300;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
-        /* Сообщения (загрузка и финал) */
-        .message {
-            font-size: 2.5rem;
-            font-weight: 500;
-            text-align: center;
-            background: rgba(0, 20, 40, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid #3b82f6;
+        /* Информация о дате */
+        .deadline-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(10, 50, 75, 0.7);
             border-radius: 60px;
-            padding: 30px 40px;
-            margin: 30px 0 10px;
-            box-shadow: 0 20px 40px #0a0a1a, 0 0 30px #1e4b8a;
-            animation: glowPulse 2s infinite alternate, fadeIn 0.8s ease-out;
-            color: #e0f0ff;
+            border: 2px solid #5ab0f0;
+            display: inline-block;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #ffffff;
+            box-shadow: 0 8px 0 #0f3345, 0 0 30px #5ab0f0;
         }
 
-        @keyframes glowPulse {
-            0% { box-shadow: 0 20px 40px #0a0a1a, 0 0 20px #2563eb; }
-            100% { box-shadow: 0 20px 50px #0f172a, 0 0 40px #3b82f6; }
+        .deadline-info i {
+            margin-right: 10px;
+            color: #ffd966;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+        /* Блок с информацией об обновлении */
+        .update-notice {
+            margin: 25px 0 15px;
+            padding: 15px 25px;
+            background: rgba(255, 217, 102, 0.15);
+            border-radius: 40px;
+            border: 2px solid rgba(255, 217, 102, 0.5);
+            display: inline-block;
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            color: #ffd966;
+            font-weight: 600;
+            animation: noticeGlow 2.5s infinite;
         }
 
-        #loading, #expired {
-            display: none;
+        @keyframes noticeGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 217, 102, 0.3); 
+                border-color: rgba(255, 217, 102, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 217, 102, 0.7); 
+                border-color: rgba(255, 217, 102, 0.9);
+            }
         }
 
-        /* для мобильных */
+        .update-notice span {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Копирайт */
+        .copyright {
+            margin-top: 20px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: rgba(176, 224, 255, 0.7);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: copyrightPulse 3s infinite;
+        }
+
+        @keyframes copyrightPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; text-shadow: 0 0 10px rgba(127, 196, 255, 0.5); }
+        }
+
+        .copyright strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Адаптивность */
         @media (max-width: 600px) {
-            h1 { font-size: 2.4rem; letter-spacing: 3px; }
-            .timer-number { font-size: 3.5rem; }
-            .timer-block { min-width: 100px; padding: 16px 8px; }
-            .message { font-size: 1.8rem; padding: 20px; }
+            .timer {
+                gap: 12px;
+            }
+            .timer-block {
+                min-width: 70px;
+                padding: 18px 12px;
+            }
+            .timer-card {
+                padding: 30px 20px;
+                border-radius: 32px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .timer-block {
+                min-width: 60px;
+                padding: 15px 10px;
+            }
+            .timer-value {
+                font-size: 2rem;
+            }
+        }
+
+        /* Пасхалка */
+        .easter-egg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: rgba(127, 196, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .easter-egg:hover {
+            color: rgba(127, 196, 255, 1);
+            text-shadow: 0 0 10px #7fc4ff;
         }
     </style>
 </head>
 <body>
-    <div class="timer-container" id="container">
-        <h1 id="mainTitle">скоро что то будет...</h1>
-        <div class="timer-grid" id="timer">
-            <div class="timer-block">
-                <div class="timer-number" id="days">00</div>
-                <div class="timer-label">Дней</div>
+    <!-- Снежинки -->
+    <div class="snowflakes-container" id="snowflakes"></div>
+
+    <div class="container">
+        <h1 class="logo">S/F</h1>
+        
+        <div class="timer-card">
+            <div class="timer-label">До обновления осталось</div>
+            <div class="timer" id="timer">
+                <div class="timer-block">
+                    <span class="timer-value" id="days">00</span>
+                    <span class="timer-unit">дней</span>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-value" id="hours">00</span>
+                    <span class="timer-unit">часов</span>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-value" id="minutes">00</span>
+                    <span class="timer-unit">минут</span>
+                </div>
+                <div class="timer-block">
+                    <span class="timer-value" id="seconds">00</span>
+                    <span class="timer-unit">секунд</span>
+                </div>
             </div>
-            <div class="timer-block">
-                <div class="timer-number" id="hours">00</div>
-                <div class="timer-label">Часов</div>
-            </div>
-            <div class="timer-block">
-                <div class="timer-number" id="minutes">00</div>
-                <div class="timer-label">Минут</div>
-            </div>
-            <div class="timer-block">
-                <div class="timer-number" id="seconds">00</div>
-                <div class="timer-label">Секунд</div>
+            <div class="deadline-info">
+                🕐 19 марта 2026, 14:00 MSK (UTC+3)
             </div>
         </div>
-        <div id="loading" class="message">загрузка...</div>
-        <div id="expired" class="message">бот открыт, перезапусти приложение</div>
+
+        <!-- Информация об обновлении -->
+        <div class="update-notice">
+            ❄️ Обновление выпустится <span>19 марта</span> ❄️
+        </div>
+
+        <!-- Копирайт -->
+        <div class="copyright">
+            © <strong>SNOWFUNE 2026</strong>
+        </div>
     </div>
 
+    <div class="easter-egg" onclick="alert('Snowfune forever! ❄️')">❄</div>
+
     <script>
-        (function() {
-            // 1 марта 2026, 14:00 MSK = 11:00 UTC
-            const targetDate = Date.UTC(2026, 2, 1, 8, 0, 0);
+        // Создание снежинок
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            const snowflakeChars = ['❄', '❅', '❆', '•'];
+            const numberOfSnowflakes = 50;
 
-            const title = document.getElementById('mainTitle');
-            const timerGrid = document.getElementById('timer');
-            const loadingDiv = document.getElementById('loading');
-            const expiredDiv = document.getElementById('expired');
-            const daysSpan = document.getElementById('days');
-            const hoursSpan = document.getElementById('hours');
-            const minutesSpan = document.getElementById('minutes');
-            const secondsSpan = document.getElementById('seconds');
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+                
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+                snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                
+                container.appendChild(snowflake);
+            }
+        }
 
-            let finished = false;
-            let timeoutId = null;
-            let intervalId = null;
+        // Таймер обратного отсчёта
+        function updateTimer() {
+            const targetDate = new Date('2026-03-19T14:00:00+03:00');
+            const now = new Date();
+            const diff = targetDate - now;
 
-            function format(n) {
-                return n < 10 ? '0' + n : n;
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
             }
 
-            function update() {
-                if (finished) return;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                const now = Date.now();
-                const diff = targetDate - now;
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
 
-                if (diff <= 0) {
-                    finished = true;
+        // Инициализация
+        createSnowflakes();
+        updateTimer();
+        setInterval(updateTimer, 1000);
 
-                    if (title) title.remove();
-                    if (timerGrid) timerGrid.remove();
+        // Эффект свечения при движении мыши
+        document.querySelector('.timer-card')?.addEventListener('mousemove', (e) => {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(100, 200, 255, 0.15), rgba(15, 40, 55, 0.85))`;
+        });
 
-                    loadingDiv.style.display = 'block';
-
-                    clearInterval(intervalId);
-
-                    timeoutId = setTimeout(() => {
-                        loadingDiv.style.display = 'none';
-                        expiredDiv.style.display = 'block';
-                    }, 5000);
-
-                    return;
-                }
-
-                const totalSec = Math.floor(diff / 1000);
-                const days = Math.floor(totalSec / (3600 * 24));
-                const hours = Math.floor((totalSec % (3600 * 24)) / 3600);
-                const minutes = Math.floor((totalSec % 3600) / 60);
-                const seconds = totalSec % 60;
-
-                daysSpan.textContent = format(days);
-                hoursSpan.textContent = format(hours);
-                minutesSpan.textContent = format(minutes);
-                secondsSpan.textContent = format(seconds);
-            }
-
-            intervalId = setInterval(update, 1000);
-            update();
-        })();
+        document.querySelector('.timer-card')?.addEventListener('mouseleave', (e) => {
+            e.currentTarget.style.background = 'rgba(15, 40, 55, 0.85)';
+        });
     </script>
 </body>
 </html>
