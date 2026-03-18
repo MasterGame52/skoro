@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snowfune — Обновление</title>
+    <title>Весеннее обновление Snowfune 🌸</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            background: linear-gradient(145deg, #2a5c3e 0%, #4c9f70 40%, #b8d9c0 100%);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -27,8 +27,8 @@
             padding: 20px;
         }
 
-        /* Снежинки */
-        .snowflakes-container {
+        /* Весенние листья/цветы */
+        .petals-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -38,24 +38,24 @@
             z-index: 1;
         }
 
-        .snowflake {
+        .petal {
             position: absolute;
-            color: #fff;
+            color: rgba(255, 240, 180, 0.8);
             user-select: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             animation: fall linear infinite;
             opacity: 0;
-            text-shadow: 0 0 15px #7fc4ff, 0 0 30px #4fa0e0;
+            text-shadow: 0 5px 15px rgba(120, 200, 100, 0.6);
         }
 
         @keyframes fall {
             0% {
                 transform: translateY(-10vh) rotate(0deg) scale(1);
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(110vh) rotate(1080deg) scale(0.2);
-                opacity: 0.1;
+                transform: translateY(110vh) rotate(720deg) scale(0.3);
+                opacity: 0.2;
             }
         }
 
@@ -80,11 +80,11 @@
             }
         }
 
-        /* Заголовок S/F */
+        /* Заголовок S/F с весенним оттенком */
         .logo {
             font-size: clamp(80px, 15vw, 150px);
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff, #c0ecff, #ffffff);
+            background: linear-gradient(135deg, #e6f7d4, #a7d49c, #e6f7d4);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -92,8 +92,8 @@
             letter-spacing: 0.05em;
             margin-bottom: 30px;
             animation: floatTitle 5s ease-in-out infinite, gradientShift 8s linear infinite;
-            text-shadow: 0 0 40px rgba(127, 196, 255, 0.5);
-            filter: drop-shadow(0 0 60px rgba(127, 196, 255, 0.8));
+            text-shadow: 0 0 30px rgba(150, 220, 120, 0.7);
+            filter: drop-shadow(0 0 50px rgba(80, 160, 60, 0.8));
         }
 
         @keyframes floatTitle {
@@ -107,17 +107,17 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Карточка с таймером */
+        /* Карточка с таймером — зелёная, свежая */
         .timer-card {
-            background: rgba(15, 40, 55, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(40, 70, 40, 0.75);
+            backdrop-filter: blur(8px);
             border-radius: 48px;
             padding: 40px 30px;
-            border: 2px solid rgba(120, 200, 255, 0.6);
-            box-shadow: 0 30px 50px -20px #000, 
-                        0 0 0 1px rgba(100, 200, 255, 0.2), 
-                        inset 0 1px 2px rgba(255,255,255,0.1),
-                        0 0 60px rgba(127, 196, 255, 0.4);
+            border: 2px solid rgba(180, 230, 140, 0.7);
+            box-shadow: 0 30px 40px -20px #0a2a1a, 
+                        0 0 0 1px rgba(150, 220, 100, 0.3), 
+                        inset 0 1px 3px rgba(255, 255, 200, 0.2),
+                        0 0 70px rgba(120, 210, 100, 0.5);
             animation: cardAppear 0.8s ease-out forwards;
             margin-bottom: 30px;
         }
@@ -135,7 +135,7 @@
 
         .timer-label {
             font-size: clamp(1rem, 2.5vw, 1.4rem);
-            color: #e0f4ff;
+            color: #f5ffe0;
             margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -151,31 +151,31 @@
         }
 
         .timer-block {
-            background: rgba(10, 35, 50, 0.85);
+            background: rgba(30, 60, 30, 0.85);
             border-radius: 24px;
             padding: 25px 20px;
             min-width: 100px;
-            border: 2px solid #3fa0e0;
-            box-shadow: 0 10px 0 #0f3448, 
-                        0 0 40px rgba(63, 160, 224, 0.6),
-                        inset 0 2px 8px rgba(0,0,0,0.5);
+            border: 2px solid #b0e57c;
+            box-shadow: 0 10px 0 #1e3a1e, 
+                        0 0 40px rgba(160, 240, 120, 0.5),
+                        inset 0 2px 8px rgba(0,0,0,0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .timer-block:hover {
             transform: translateY(-8px);
-            box-shadow: 0 18px 0 #0f3448, 
-                        0 0 60px rgba(63, 160, 224, 0.9);
+            box-shadow: 0 18px 0 #1e3a1e, 
+                        0 0 70px rgba(180, 255, 140, 0.9);
         }
 
         .timer-value {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
-            color: #ffd966;
+            color: #ffecaa;
             display: block;
             line-height: 1;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 217, 102, 0.6);
+            text-shadow: 0 0 20px rgba(255, 240, 150, 0.8);
             animation: countdownPulse 1s infinite;
         }
 
@@ -186,7 +186,7 @@
 
         .timer-unit {
             font-size: clamp(0.75rem, 2vw, 0.9rem);
-            color: #b0e0ff;
+            color: #d5f0c0;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
@@ -196,42 +196,42 @@
         .deadline-info {
             margin-top: 30px;
             padding: 20px;
-            background: rgba(10, 50, 75, 0.7);
+            background: rgba(35, 80, 35, 0.8);
             border-radius: 60px;
-            border: 2px solid #5ab0f0;
+            border: 2px solid #b0e57c;
             display: inline-block;
             font-size: clamp(0.9rem, 2vw, 1.1rem);
             color: #ffffff;
-            box-shadow: 0 8px 0 #0f3345, 0 0 30px #5ab0f0;
+            box-shadow: 0 8px 0 #1e3a1e, 0 0 30px #b0e57c;
         }
 
         .deadline-info i {
             margin-right: 10px;
-            color: #ffd966;
+            color: #ffecaa;
         }
 
         /* Блок с информацией об обновлении */
         .update-notice {
             margin: 25px 0 15px;
             padding: 15px 25px;
-            background: rgba(255, 217, 102, 0.15);
+            background: rgba(255, 240, 150, 0.2);
             border-radius: 40px;
-            border: 2px solid rgba(255, 217, 102, 0.5);
+            border: 2px solid rgba(200, 240, 120, 0.8);
             display: inline-block;
             font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-            color: #ffd966;
+            color: #ebffcc;
             font-weight: 600;
             animation: noticeGlow 2.5s infinite;
         }
 
         @keyframes noticeGlow {
             0%, 100% { 
-                box-shadow: 0 0 20px rgba(255, 217, 102, 0.3); 
-                border-color: rgba(255, 217, 102, 0.5);
+                box-shadow: 0 0 20px rgba(200, 255, 140, 0.5); 
+                border-color: rgba(200, 240, 120, 0.7);
             }
             50% { 
-                box-shadow: 0 0 40px rgba(255, 217, 102, 0.7); 
-                border-color: rgba(255, 217, 102, 0.9);
+                box-shadow: 0 0 50px rgba(220, 255, 160, 0.9); 
+                border-color: rgba(240, 255, 180, 0.9);
             }
         }
 
@@ -244,7 +244,7 @@
         .copyright {
             margin-top: 20px;
             font-size: clamp(0.8rem, 2vw, 1rem);
-            color: rgba(176, 224, 255, 0.7);
+            color: rgba(210, 240, 180, 0.8);
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -252,8 +252,8 @@
         }
 
         @keyframes copyrightPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; text-shadow: 0 0 10px rgba(127, 196, 255, 0.5); }
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; text-shadow: 0 0 12px rgba(170, 240, 130, 0.7); }
         }
 
         .copyright strong {
@@ -286,33 +286,34 @@
             }
         }
 
-        /* Пасхалка */
+        /* Весенняя пасхалка */
         .easter-egg {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            font-size: 0.8rem;
-            color: rgba(127, 196, 255, 0.5);
+            font-size: 1.2rem;
+            color: rgba(170, 240, 130, 0.7);
             cursor: pointer;
             transition: all 0.3s;
             z-index: 100;
         }
 
         .easter-egg:hover {
-            color: rgba(127, 196, 255, 1);
-            text-shadow: 0 0 10px #7fc4ff;
+            color: #d4ffb0;
+            text-shadow: 0 0 15px #b0ff80;
+            transform: scale(1.2) rotate(10deg);
         }
     </style>
 </head>
 <body>
-    <!-- Снежинки -->
-    <div class="snowflakes-container" id="snowflakes"></div>
+    <!-- Весенние листья/цветы вместо снежинок -->
+    <div class="petals-container" id="petals"></div>
 
     <div class="container">
         <h1 class="logo">S/F</h1>
         
         <div class="timer-card">
-            <div class="timer-label">До обновления осталось</div>
+            <div class="timer-label">До весеннего обновления осталось</div>
             <div class="timer" id="timer">
                 <div class="timer-block">
                     <span class="timer-value" id="days">00</span>
@@ -331,49 +332,73 @@
                     <span class="timer-unit">секунд</span>
                 </div>
             </div>
-            <div class="deadline-info">
-                🕐 20 марта 2026, 14:00 MSK (UTC+3)
+            <div class="deadline-info" id="deadline-text">
+                <!-- дата будет подставлена скриптом -->
             </div>
         </div>
 
-        <!-- Информация об обновлении -->
-        <div class="update-notice">
-            ❄️ Обновление выпустится <span>19 марта</span> ❄️
+        <!-- Информация об обновлении (уже с "марта") -->
+        <div class="update-notice" id="notice-text">
+            🌸 Обновление выпустится <span>20 марта</span> 🌸
         </div>
 
         <!-- Копирайт -->
         <div class="copyright">
-            © <strong>SNOWFUNE 2026</strong>
+            © <strong>SNOWFUNE • ВЕСНА 2026</strong>
         </div>
     </div>
 
-    <div class="easter-egg" onclick="alert('Snowfune forever! ❄️')">❄</div>
+    <div class="easter-egg" onclick="alert('Солнечного настроения! 🌼')">🌼</div>
 
     <script>
-        // Создание снежинок
-        function createSnowflakes() {
-            const container = document.getElementById('snowflakes');
-            const snowflakeChars = ['❄', '❅', '❆', '•'];
-            const numberOfSnowflakes = 50;
+        // Создание падающих лепестков/листьев
+        function createPetals() {
+            const container = document.getElementById('petals');
+            const petalChars = ['🍃', '🌿', '🌸', '🌼', '🌻', '🍀', '🌱', '💮', '🌺', '🪴']; // весенние символы
+            const numberOfPetals = 40;
 
-            for (let i = 0; i < numberOfSnowflakes; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.className = 'snowflake';
-                snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+            for (let i = 0; i < numberOfPetals; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
                 
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                snowflake.style.opacity = Math.random() * 0.6 + 0.4;
-                snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.fontSize = (Math.random() * 28 + 14) + 'px';
+                petal.style.opacity = Math.random() * 0.7 + 0.3;
+                petal.style.animationDuration = (Math.random() * 12 + 12) + 's';
+                petal.style.animationDelay = Math.random() * 8 + 's';
+                petal.style.color = `rgba(180, 240, 140, ${Math.random() * 0.8 + 0.2})`;
                 
-                container.appendChild(snowflake);
+                container.appendChild(petal);
             }
+        }
+
+        // Получение ближайшего 20 марта (14:00 MSK)
+        function getNextMarch20() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            
+            // 20 марта, 14:00 MSK = 11:00 UTC
+            let target = new Date(Date.UTC(currentYear, 2, 20, 11, 0, 0));
+            if (now > target) {
+                target = new Date(Date.UTC(currentYear + 1, 2, 20, 11, 0, 0));
+            }
+            return target;
+        }
+
+        // Обновление текста с датой (формат с "марта" уже используется)
+        function updateDeadlineText(targetDate) {
+            const day = targetDate.getUTCDate();
+            const month = targetDate.toLocaleString('ru', { month: 'long', timeZone: 'UTC' }); // "марта"
+            const year = targetDate.getUTCFullYear();
+            const formatted = `${day} ${month} ${year}, 14:00 MSK (UTC+3)`;
+            document.getElementById('deadline-text').innerHTML = `🕐 ${formatted}`;
+            document.getElementById('notice-text').innerHTML = `🌸 Обновление выпустится <span>${day} ${month}</span> 🌸`;
         }
 
         // Таймер обратного отсчёта
         function updateTimer() {
-            const targetDate = new Date('2026-03-20T14:00:00+03:00');
+            const targetDate = getNextMarch20();
             const now = new Date();
             const diff = targetDate - now;
 
@@ -394,24 +419,27 @@
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            // Обновляем текст с датой (на случай перехода года)
+            updateDeadlineText(targetDate);
         }
 
         // Инициализация
-        createSnowflakes();
+        createPetals();
         updateTimer();
         setInterval(updateTimer, 1000);
 
-        // Эффект свечения при движении мыши
+        // Эффект свечения при движении мыши на карточке
         document.querySelector('.timer-card')?.addEventListener('mousemove', (e) => {
             const card = e.currentTarget;
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(100, 200, 255, 0.15), rgba(15, 40, 55, 0.85))`;
+            card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(170, 240, 120, 0.2), rgba(40, 70, 40, 0.85))`;
         });
 
         document.querySelector('.timer-card')?.addEventListener('mouseleave', (e) => {
-            e.currentTarget.style.background = 'rgba(15, 40, 55, 0.85)';
+            e.currentTarget.style.background = 'rgba(40, 70, 40, 0.75)';
         });
     </script>
 </body>
